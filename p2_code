@@ -4,7 +4,7 @@ import numpy as np
 import warnings 
 warnings.filterwarnings('ignore')
 
-under_pressure=pd.read_csv('Undder Pressure .csv')
+under_pressure=pd.read_csv('Undder Pressure .csv') 
 
 under_pressure.sample(17)
 
