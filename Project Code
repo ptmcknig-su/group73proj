@@ -1,0 +1,8 @@
+import pandas as pd 
+import numpy as np 
+import warnings 
+warnings.filterwarnings('ignore')
+under_pressure=pd.read_csv('Undder Pressure .csv')
+under_pressure.sample(17)
+Receivers_Stats=pd.read_csv('Receivers Stats .csv')
+Receivers_Stats.sample(17)
