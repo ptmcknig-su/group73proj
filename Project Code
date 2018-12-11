@@ -9,13 +9,14 @@ wr_names=pd.DataFrame(Receivers_Stats, columns= ['Player '])
 
 
 Position_Choice=str(input ("Choose which position you would like to analyze: "))
-while Position_Choice == 'Quarterback' or 'Receiver':
-    if Position_Choice == 'Quarterback':
+while Position_Choice == 'Q' or 'R':
+    if Position_Choice == 'Q':
         print (qb_names)
-        Player_Q=str(input("Choose two Quaterbacks you would like to analyze from this list above by putting the number left of their name: "))
-        Print ("You chose %s" %under_pressure.iloc['Player_Q']['Player'])
-    elif Position_Choice == 'Receiver':
+        Player_Q=int(input("Choose One Quaterbacks you would like to analyze from this list above by putting the number left of their name: "))
+        print ("You chose %s " % under_pressure.loc[Player_Q]['player'])
+        Player_Q2=int(input("Choose another Quaterback you want to compare your first choice to(please dont pick the same player): "))
+        print ("You chose %s " % under_pressure.loc[Player_Q2]['player'])
+    elif Position_Choice == 'R':
         print (wr_names)
         Player_R=str(input("Chose two recievers you would like to analyze from this list above by putting the number left of their name: "))
 print('that is not a poition we are working with')
-
