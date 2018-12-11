@@ -1,0 +1,12 @@
+solar_distances = dict(mars=219.7e6, venus=116.4e6, jupiter=546e6, pluto=2.95e9)
+list_of_distances = list(solar_distances.values())  # Convert view to list
+
+closest = sorted(list_of_distances)[0]
+next_closest = sorted(list_of_distances)[1]
+
+print('Closest planet is %.4e' % closest)
+print('Second closest planet is %.4e' % next_closest)
+
+qb_or_rec = input("do you want to evaluate quarterbacks or receivers?")
+  while qb_or_rec = "quarterbacks"
+    opti
