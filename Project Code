@@ -18,5 +18,8 @@ while Position_Choice == 'Q' or 'R':
         print ("You chose %s " % under_pressure.loc[Player_Q2]['player'])
     elif Position_Choice == 'R':
         print (wr_names)
-        Player_R=str(input("Chose two recievers you would like to analyze from this list above by putting the number left of their name: "))
+        Player_R1=str(input("Chose one reciever you would like to analyze from this list above by putting the number left of their name: "))
+        print ("You chose %s " % Receivers_Stats.loc[Player_R1]['Player '])
+        Player_R2=int(input("Choose another receiver you want to compare your first choice to(please dont pick the same player): "))
+        print ("You chose %s " % Receivers_Stats.loc[Player_Q2]['Player '])
 print('that is not a poition we are working with')
