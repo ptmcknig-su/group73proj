@@ -12,7 +12,7 @@ Position_Choice=str(input ("Choose which position you would like to analyze: "))
 while Position_Choice == 'Q' or 'R':
     if Position_Choice == 'Q':
         print (qb_names)
-        Player_Q=int(input("Choose One Quaterbacks you would like to analyze from this list above by putting the number left of their name: "))
+        Player_Q1=int(input("Choose One Quaterbacks you would like to analyze from this list above by putting the number left of their name: "))
         print ("You chose %s " % under_pressure.loc[Player_Q]['player'])
         Player_Q2=int(input("Choose another Quaterback you want to compare your first choice to(please dont pick the same player): "))
         print ("You chose %s " % under_pressure.loc[Player_Q2]['player'])
