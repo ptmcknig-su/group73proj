@@ -3,13 +3,18 @@ import numpy as np
 import warnings 
 warnings.filterwarnings('ignore')
 under_pressure=pd.read_csv('Undder Pressure .csv')
-Receivers_Stats=pd.read_csv('Receivers Stats .csv')
+Receivers_Stats=pd.read_csv('Receivers_Stats.csv')
 qb_names=pd.DataFrame(under_pressure, columns= ['player'])
+wr_names=pd.DataFrame(Receivers_Stats, columns= ['Player ']) 
 
 
 Position_Choice=str(input ("Choose which position you would like to analyze: "))
-while Position_Choice == 'Quarterback':
-    Player_Q=str(input("Chose two Quaterbacks you would like to analyze from this list: "))
-    while Position_Choice == 'Reciever':
-        Player_R=str(input('Chose two Recievers you would like to analyze: '))
+while Position_Choice == 'Quarterback' or 'Receiver':
+    if Position_Choice == 'Quarterback':
+        print (qb_names)
+        Player_Q=str(input("Chose two Quaterbacks you would like to analyze from this list above by putting the number left of their name: "))
+        Print ("You chose ")
+    elif Position_Choice == 'Receiver':
+        print (wr_names)
+        Player_R=str(input("Chose two recievers you would like to analyze from this list above by putting the number left of their name: "))
 print('that is not a poition we are working with')
