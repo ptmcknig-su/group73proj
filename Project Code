@@ -3,6 +3,13 @@ import numpy as np
 import warnings 
 warnings.filterwarnings('ignore')
 under_pressure=pd.read_csv('Undder Pressure .csv')
-under_pressure.sample(17)
 Receivers_Stats=pd.read_csv('Receivers Stats .csv')
-Receivers_Stats.sample(17)
+qb_names=pd.DataFrame(under_pressure, columns= ['player'])
+
+
+Position_Choice=str(input ("Choose which position you would like to analyze: "))
+while Position_Choice == 'Quarterback':
+    Player_Q=str(input("Chose two Quaterbacks you would like to analyze from this list: "))
+    while Position_Choice == 'Reciever':
+        Player_R=str(input('Chose two Recievers you would like to analyze: '))
+print('that is not a poition we are working with')
