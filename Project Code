@@ -28,59 +28,55 @@ while position_choice == 'Q' or 'R': #Q and R will be Quarterback or Running Bac
         print('that is not a position we are working with')
         break 
     continue
-point = 0
-    
-if quarterbacks.iloc[player_q1]['pressure_interceptions'] > quarterbacks.iloc[player_q2]['pressure_interceptions']:
-    point = point +1 
-    print("player_q2 has less interceptions under pressure than player_q1")
-    print("Point player_q2 has:", point, "points")
-else:   
-    point = point + 1 
-    print("player_q1 has less interceptions under pressure than player_q2")
-    print('point player_q1 has:',point, "points")
-if quarterbacks.iloc[player_q1]['pressure_qb_rating'] > quarterbacks.iloc[player_q2]['pressure_qb_rating']:
-    point = point +1 
-    print("player_q1 has a better passer rating while under pressure than player_q2")
-    print("Player_q1 has:", point, "points")
-else: 
-    point= point+1 
-    print ("Player_q2 has a better passer rating while under pressure than player_q1")
-    print ('Player_q2 has:', point, "points" )
-if quarterbacks.iloc[player_q1]['pressure_accuracy_percent'] > quarterbacks.iloc[player_q2]['pressure_accuracy_percent']:
-    point = point +1 
-    print("player_q1 is more accurate while under pressure than player_q2")
-    print("Player_q1 has:", point, "points")
-else: 
-    point= point+1 
-    print ("player_q2 is more accurate while under pressure than player_q1")
-    print ('player_q2 has:', point, "points" )
-if quarterbacks.iloc[player_q1]['pressure_yards'] > quarterbacks.iloc[player_q2]['pressure_yards']:
-    point = point +1 
-    print("player_q1 has thrown for more yards while under pressure than player_q2")
-    print("Player_q1 has:", point, "points")
-else: 
-    point= point+1 
-    print ("player_q2 has thrown for more yards under pressure than player_q1")
-    print ('player_q2 has:', point, "points" )
-if quarterbacks.iloc[player_q1]['pressure_completions'] > quarterbacks.iloc[player_q2]['pressure_completions']:
-    point = point +1 
-    print("player_q1 has completed more passes while under pressure than player_q2")
-    print("Player_q1 has:", point, "points")
-else: 
-    point= point+1 
-    print ("player_q2 has completed more passes while under pressure than  player_q1")
-    print ('player_q2 has:', point, "points" )
-    print ('player_q2 has:', point, "points" )
-if quarterbacks.iloc[player_q1]['pressure_touchdowns'] > quarterbacks.iloc[player_q2]['pressure_touchdowns']:
-    point = point +1 
-    print("player_q1 has more touchdowns while under pressure than player_q2")
-    print("Player_q1 has:", point, "points")
-else: 
-    point= point+1 
-    print ("player_q2 has more touchdowns while under pressure than  player_q1")
-    print ('player_q2 has:', point, "points" )
 
-
-
-
-     
+if position_choice == 'Q':
+    point_q1 = 0
+    point_q2 = 0
+    if quarterbacks.iloc[player_q1]['pressure_interceptions'] > quarterbacks.iloc[player_q2]['pressure_interceptions']:
+        point_q2 = point_q2 +1 
+        print("player_q2 has less interceptions under pressure than player_q1")
+        print("player_q2 has:", point_q2, "points")
+    else:   
+        point_q1 = point_q1 +1 
+        print("player_q1 has less interceptions under pressure than player_q2")
+        print('Player_q1 has:',point_q1, "points")
+    if quarterbacks.iloc[player_q1]['pressure_qb_rating'] > quarterbacks.iloc[player_q2]['pressure_qb_rating']:
+        point_q1 = point_q1 +1
+        print("player_q1 has a better passer rating while under pressure than player_q2")
+        print("Player_q1 has:", point_q1, "points")
+    else: 
+        point_q2 = point_q2 +1 
+        print ("Player_q2 has a better passer rating while under pressure than player_q1")
+        print ('Player_q2 has:', point_q2, "points" )
+    if quarterbacks.iloc[player_q1]['pressure_accuracy_percent'] > quarterbacks.iloc[player_q2]['pressure_accuracy_percent']:
+        point_q1 = point_q1 +1
+        print("player_q1 is more accurate while under pressure than player_q2")
+        print("Player_q1 has:", point_q1, "points")
+    else: 
+        point_q2 = point_q2 +1
+        print ("player_q2 is more accurate while under pressure than player_q1")
+        print ('player_q2 has:', point_q2, "points" )
+    if quarterbacks.iloc[player_q1]['pressure_yards'] > quarterbacks.iloc[player_q2]['pressure_yards']:
+        point_q1 = point_q1 +1
+        print("player_q1 has thrown for more yards while under pressure than player_q2")
+        print("Player_q1 has:", point_q1, "points")
+    else: 
+        point_q2 = point_q2 +1 
+        print ("player_q2 has thrown for more yards under pressure than player_q1")
+        print ('player_q2 has:', point_q2, "points" )
+    if quarterbacks.iloc[player_q1]['pressure_completions'] > quarterbacks.iloc[player_q2]['pressure_completions']:
+        point_q1 = point_q1 +1
+        print("player_q1 has completed more passes while under pressure than player_q2")
+        print("Player_q1 has:", point_q1, "points")
+    else: 
+        point_q2 = point_q2 +1
+        print ("player_q2 has completed more passes while under pressure than  player_q1")
+        print ('player_q2 has:', point_q2, "points" )
+    if quarterbacks.iloc[player_q1]['pressure_touchdowns'] > quarterbacks.iloc[player_q2]['pressure_touchdowns']:
+        point_q1 = point_q1 +1
+        print("player_q1 has more touchdowns while under pressure than player_q2")
+        print("Player_q1 has:", point_q1, "points")
+    else: 
+        point_q2 = point_q2 +1
+        print ("player_q2 has more touchdowns while under pressure than  player_q1")
+        print ('player_q2 has:', point_q2, "points" )
