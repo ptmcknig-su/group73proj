@@ -31,3 +31,17 @@ while position_choice == 'Q' or 'R' or 'exit': #Q and R will be Quarterback or R
         print('That is not a recognized input, please try again.')
         break
     continue
+    point = 0
+    
+if quarterbacks.iloc[player_q1]['pressure_interceptions'] > quarterbacks.iloc[player_q2]['pressure_interceptions']:
+    point = point +1 
+    print("player_q2 has less interceptions under pressure than player_q1")
+    print("Point player_q2:", point)
+else:   
+    point = point + 1 
+    print("player_q1 has less interceptions under pressure than player_q2")
+    print('point player_q1:',point, "points")
+if quarterbacks.iloc[player_q1]['pressure_qb_rating'] > quarterbacks.iloc[player_q2]['pressure_qb_rating']:
+    point = point +1 
+    print("player_q1 has a better passer rating while under pressure than player_q2")
+    print("Player_q1 has:", point, "points")
