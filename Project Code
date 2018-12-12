@@ -13,16 +13,18 @@ while position_choice == 'Q' or 'R': #Q and R will be Quarterback or Running Bac
     if position_choice == 'Q':
         print (qb_names)
         player_q1 = int(input("Choose One Quaterbacks you would like to analyze from this list above by putting the number left of their name: "))
-        print("You chose %s " % quarterbacks.loc[player_q1]['player'])
+        print ("%s" %quarterbacks.loc[player_q1]['player']) 
+        print ('vs.')
         player_q2 = int(input("Choose another Quaterback you want to compare your first choice to(please dont pick the same player): "))
-        print("You chose %s " % quarterbacks.loc[player_q2]['player'])
+        print("%s" % quarterbacks.loc[player_q2]['player'])
         break  
     elif position_choice == 'R':
         print (wr_names)
         player_r1=int(input("Chose one reciever you would like to analyze from this list above by putting the number left of their name: "))
-        print("You chose %s " % receivers.loc[player_r1]['player'])
+        print("%s" % receivers.loc[player_r1]['player'])
+        print ('VS.')
         player_r2=int(input("Choose another receiver you want to compare your first choice to(please dont pick the same player): "))
-        print("You chose %s " % receivers.loc[player_r2]['player'])
+        print("%s" % receivers.loc[player_r2]['player'])
         break 
     else:
         print('that is not a position we are working with')
@@ -92,6 +94,7 @@ if position_choice == 'Q':
         point_q2 = point_q2 +1
         print ("player_q2 has more touchdowns while under pressure than  player_q1")
         print ('player_q2 has:', point_q2, "points" )
+
 if position_choice == 'R': 
     point_r1 = 0 
     point_r2 = 0 
@@ -137,3 +140,6 @@ if position_choice == 'R':
         print ('Player_r2 has:', point_r2, "points")
         
     
+    
+    
+        
