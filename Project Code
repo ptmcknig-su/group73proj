@@ -8,8 +8,8 @@ qb_names = pd.DataFrame(quarterbacks, columns= ['player'])
 wr_names = pd.DataFrame(receivers, columns= ['player']) 
 
 
-position_choice = str(input("Choose which position you would like to analyze: "))
-while position_choice == 'Q' or 'R': #Q and R will be Quarterback or Running Back, they're just letters as we test
+position_choice = str(input("We are working with quarterbacks and receivers. Pick which you want to analyze, or type exit to leave: "))
+while position_choice == 'Q' or 'R' or 'exit': #Q and R will be Quarterback or Running Back, they're just letters as we test
     if position_choice == 'Q':
         print (qb_names)
         player_q1 = int(input("Choose One Quaterbacks you would like to analyze from this list above by putting the number left of their name: "))
@@ -24,6 +24,10 @@ while position_choice == 'Q' or 'R': #Q and R will be Quarterback or Running Bac
         player_r2=int(input("Choose another receiver you want to compare your first choice to(please dont pick the same player): "))
         print("You chose %s " % receivers.loc[player_r2]['player'])
         break
+    elif position_choice == 'exit':
+        print('Alright thanks bye')
+        break
     else:
-        print('that is not a position we are working with')
-    break
+        print('That is not a recognized input, please try again.')
+        break
+    continue
