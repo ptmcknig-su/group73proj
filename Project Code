@@ -16,10 +16,14 @@ while position_choice == 'Q' or 'R': #Q and R will be Quarterback or Running Bac
         print("You chose %s " % quarterbacks.loc[player_q1]['player'])
         player_q2 = int(input("Choose another Quaterback you want to compare your first choice to(please dont pick the same player): "))
         print("You chose %s " % quarterbacks.loc[player_q2]['player'])
-    elif Position_Choice == 'R':
+        break
+    elif position_choice == 'R':
         print (wr_names)
         player_r1=int(input("Chose one reciever you would like to analyze from this list above by putting the number left of their name: "))
         print("You chose %s " % receivers.loc[player_r1]['player'])
         player_r2=int(input("Choose another receiver you want to compare your first choice to(please dont pick the same player): "))
         print("You chose %s " % receivers.loc[player_r2]['player'])
-print('that is not a position we are working with')
+        break
+    else:
+        print('that is not a position we are working with')
+    break
