@@ -14,22 +14,20 @@ valid_rec1 = False
 valid_rec2 = False
 
 while valid_position is False:
+    position_choice = str(input("Choose which position you would like to analyze, by typing Q for Quarterbacks or R for receivers: "))
     try:
-        position_choice = str(input("Choose which position you would like to analyze, by typing Q for Quarterbacks or R for receivers: "))
         if position_choice == 'Q' or 'R':
             valid_position = True
-        elif position_choice != 'Q' or 'R':
-            valid_position = False
-        position_choice = str(input("Please try again, Q for Quarterbacks or R for receivers: "))
-        pass
+        else:
+            pass
     except:
-        position_choice = str(input("Choose which position you would like to analyze, by typing Q for Quarterbacks or R for receivers: "))
+        position_choice = str(input("CHOOSE which position you would like to analyze, by typing Q for Quarterbacks or R for receivers: "))
         if position_choice == 'Q' or 'R':
             valid_position = True
             break
         position_choice = str(input("PLEASE try again, Q for Quarterbacks or R for receivers: "))
         break
-        
+
 if position_choice == 'Q':
     print (qb_names)
 elif position_choice == 'R':
