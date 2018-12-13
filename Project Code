@@ -12,7 +12,6 @@ valid_qb1 = False
 valid_qb2 = False
 valid_rec1 = False
 valid_rec2 = False
-
 while valid_position is False:
     try:
         position_choice = str(input("Choose which position you would like to analyze, by typing Q for Quarterbacks or R for receivers: "))
@@ -28,6 +27,12 @@ while valid_position is False:
         position_choice = str(input("PLEASE try again, Q for Quarterbacks or R for receivers: "))
         continue
 
+
+if position_choice == 'Q':
+    print (qb_names)
+elif position_choice == 'R':
+    print (wr_names)
+        
 if position_choice == 'Q':
     print (qb_names)
 elif position_choice == 'R':
@@ -65,116 +70,158 @@ while position_choice == 'Q' and valid_qb2 is False:
     print ("Comparing %s against %s..." %(q1_name,q2_name))
     pass
 
-    while position_choice == 'R' and valid_rec is False:
-        print (wr_names)
+while position_choice == 'R' and valid_rec1 is False:
+    try:
         player_r1=int(input("Chose one reciever you would like to analyze from this list above by putting the number left of their name: "))
-        print("%s" % receivers.loc[player_r1]['player'])
-        print ('VS.')
-        player_r2=int(input("Choose another receiver you want to compare your first choice to(please dont pick the same player): "))
-        print("%s" % receivers.loc[player_r2]['player'])
-        break 
+        if player_r1 in valid_numbers:
+            valid_rec1= True 
+            w1_name=wr_names.iloc[Player_r1]['player']
+        print ("You chose%s." %receivers.loc[player_r1]['player'])
+    except:
+        player_r1=int(input("Please try again, the proper values are between 0 an 16: "))
+        if player_r1 in valid_numbers: 
+            valid_rec1 = True 
+            w1_name = wr_names.iloc[player_r1]['player']
+        print ("You chose %s." %receivers.loc[player_r1]['player'])
+        
+while position_choice == 'R' and valid_rec2 is False: 
+    try:
+        player_r2=int(input("Chose one reciever you would like to analyze from this list above by putting the number left of their name: "))
+        if player_r2 in valid_numbers:
+            valid_rec2= True 
+            w2_name=wr_names.iloc[Player_r2]['player']
+        print ("You chose%s." %receivers.loc[player_r2]['player'])
+    except:
+        player_r2=int(input("Please try again, the proper values are between 0 an 16: "))
+        if player_r2 in valid_numbers: 
+            valid_rec2 = True 
+            w2_name = wr_names.iloc[player_r2]['player']
+        print ("You chose %s." %receivers.loc[player_r2]['player'])
+        pass
+    print ("Comparing %s against %s..."%(w1_name,w2_name))
+    
 
-    if position_choice == 'Q':
-        point_q1 = 0
-        point_q2 = 0
-        if quarterbacks.iloc[player_q1]['pressure_interceptions'] > quarterbacks.iloc[player_q2]['pressure_interceptions']:
-            point_q2 = point_q2 +1 
-            print(q2_name, "has less interceptions under pressure than", q1_name)
-        elif quarterbacks.iloc[player_q1]['pressure_interceptions'] == quarterbacks.iloc[player_q2]['pressure_interceptions']:
-            print("Both players have the same amount of interceptions while under pressure.")
-        else:   
-            point_q1 = point_q1 +1 
-            print(q1_name,"has less interceptions under pressure than",q2_name)
-        if quarterbacks.iloc[player_q1]['pressure_qb_rating'] > quarterbacks.iloc[player_q2]['pressure_qb_rating']:
-            point_q1 = point_q1 +1
-            print("player_q1 has a better passer rating while under pressure than player_q2")
-        if quarterbacks.iloc[player_q1]['pressure_qb_rating'] == quarterbacks.iloc[player_q2]['pressure_qb_rating']:
-            print("Both players have the same passer rating while under pressure")
-        else: 
-            point_q2 = point_q2 +1 
-            print ("Player_q2 has a better passer rating while under pressure than player_q1")
-            print ('Player_q2 has:', point_q2, "points" )
-        if quarterbacks.iloc[player_q1]['pressure_accuracy_percent'] > quarterbacks.iloc[player_q2]['pressure_accuracy_percent']:
-            point_q1 = point_q1 +1
-            print("player_q1 is more accurate while under pressure than player_q2")
-            print("Player_q1 has:", point_q1, "points")
-        if quarterbacks.iloc[player_q1]['pressure_accuracy_percent'] == quarterbacks.iloc[player_q2]['pressure_accuracy_percent']:
-            print("Both players have the same accuracy percentage while under pressure")
-        else: 
-            point_q2 = point_q2 +1
-            print ("player_q2 is more accurate while under pressure than player_q1")
-            print ('player_q2 has:', point_q2, "points" )
-        if quarterbacks.iloc[player_q1]['pressure_yards'] > quarterbacks.iloc[player_q2]['pressure_yards']:
-            point_q1 = point_q1 +1
-            print("player_q1 has thrown for more yards while under pressure than player_q2")
-            print("Player_q1 has:", point_q1, "points")
-        if  quarterbacks.iloc[player_q1]['pressure_yards'] == quarterbacks.iloc[player_q2]['pressure_yards']:
-            print("Both players have the same amount of yards while under pressure")
-        else: 
-            point_q2 = point_q2 +1 
-            print ("player_q2 has thrown for more yards under pressure than player_q1")
-            print ('player_q2 has:', point_q2, "points" )
-        if quarterbacks.iloc[player_q1]['pressure_completions'] > quarterbacks.iloc[player_q2]['pressure_completions']:
-            point_q1 = point_q1 +1
-            print("player_q1 has completed more passes while under pressure than player_q2")
-            print("Player_q1 has:", point_q1, "points")
-        if quarterbacks.iloc[player_q1]['pressure_completions'] == quarterbacks.iloc[player_q2]['pressure_completions']:
-            print("Both players have the same amount of completions while under pressure")
-        else: 
-            point_q2 = point_q2 +1
-            print ("player_q2 has completed more passes while under pressure than  player_q1")
-            print ('player_q2 has:', point_q2, "points" )
-        if quarterbacks.iloc[player_q1]['pressure_touchdowns'] > quarterbacks.iloc[player_q2]['pressure_touchdowns']:
-            point_q1 = point_q1 +1
-            print("player_q1 has more touchdowns while under pressure than player_q2")
-            print("Player_q1 has:", point_q1, "points")
-        if quarterbacks.iloc[player_q1]['pressure_touchdowns'] == quarterbacks.iloc[player_q2]['pressure_touchdowns']:
-            print("Both players have the same amount of touchdowns while under pressure")
-        else: 
-            point_q2 = point_q2 +1
-            print ("player_q2 has more touchdowns while under pressure than  player_q1")
-            print ('player_q2 has:', point_q2, "points" )
 
-    if position_choice == 'R': 
-        point_r1 = 0 
-        point_r2 = 0 
-        if receivers.iloc[player_r1]['DRP%'] > receivers.iloc[player_r2]['DRP%']:
-            point_r2 = point_r2 +1 
-            print ("Player_r2 has a lower dropped balls percentage than player_r1")
-            print ("Player_r2 has:", point_r2, "points")
-        if receivers.iloc[player_r1]['DRP%'] == receivers.iloc[player_r2]['DRP%']:
-            print ("Both players have the same dropped ball percentage")
-        else: 
-            point_r1 =point_r1 +1
-            print ('Player_r1 has a lower dropped balls percentage than player_r2')
-            print ('Player_r1 has:', point_r1, "points")
-        if receivers.iloc[player_r1]['Y/PR'] > receivers.iloc[player_r2]['Y/PR']:
-            point_r1 = point_r1 +1 
-            print ("Player_r1 has more yards per reception than player_r2")
-            print ("Player_r1 has:", point_r1, "points")
-        if receivers.iloc[player_r1]['Y/PR'] == receivers.iloc[player_r2]['Y/PR']:
-            print ("Both player have the same amount of yards per reception")
-        else: 
-            point_r2 =point_r2 +1
-            print ('Player_r2 has more yards per reception than player_r1')
-            print ('Player_r2 has:', point_r2, "points")
-        if receivers.iloc[player_r1]['TD'] > receivers.iloc[player_r2]['TD']:
-            point_r1 = point_r1 +1 
-            print ("Player_r1 has more touchdowns than player_r2")
-            print ("Player_r1 has:", point_r1, "points")
-        if receivers.iloc[player_r1]['TD'] == receivers.iloc[player_r2]['TD']:
-            print ("Both players have the same amount of touchdowns")
-        else: 
-            point_r2 =point_r2 +1
-            print ('Player_r2 has more touchdowns than player_r1')
-            print ('Player_r2 has:', point_r2, "points")
-        if receivers.iloc[player_r1]['Yards '] > receivers.iloc[player_r2]['Yards ']:
-            point_r1 = point_r1 +1 
-            print ("Player_r1 has more overall yards than player_r2")
-            print ("Player_r1 has:", point_r1, "points")
-        if receivers.iloc[player_r1]['Yards '] == receivers.iloc[player_r2]['Yards ']:
-            print ("Both players have the smae amount of overall yards")
-        else: 
-            point_r2 =point_r2 +1
-            print ('Player_r2 has more overall yards than player_r1')
-            print ('Player_r2 has:', point_r2, "points")
+
+
+if position_choice == 'Q':
+    point_q1 = 0
+    point_q2 = 0
+    if quarterbacks.iloc[player_q1]['pressure_interceptions'] > quarterbacks.iloc[player_q2]['pressure_interceptions']:
+        point_q2 = point_q2 +1 
+        print(q2_name, "has less interceptions under pressure than", q1_name)
+    elif quarterbacks.iloc[player_q1]['pressure_interceptions'] == quarterbacks.iloc[player_q2]['pressure_interceptions']:
+        print("Both players have the same amount of interceptions while under pressure.")
+    else:   
+        point_q1 = point_q1 +1 
+        print(q1_name, "has less interceptions under pressure than", q2_name)
+    if quarterbacks.iloc[player_q1]['pressure_qb_rating'] > quarterbacks.iloc[player_q2]['pressure_qb_rating']:
+        point_q1 = point_q1 +1
+        print(q1_name,"has a better passer rating while under pressure than", q2_name)
+    elif quarterbacks.iloc[player_q1]['pressure_qb_rating'] == quarterbacks.iloc[player_q2]['pressure_qb_rating']:
+        print("Both players have the same passer rating while under pressure")
+    else: 
+        point_q2 = point_q2 +1 
+        print (q2_name,"has a better passer rating while under pressure than",q1_name)
+    if quarterbacks.iloc[player_q1]['pressure_accuracy_percent'] > quarterbacks.iloc[player_q2]['pressure_accuracy_percent']:
+        point_q1 = point_q1 +1
+        print(q1_name,"is more accurate while under pressure than",q2_name)
+    elif quarterbacks.iloc[player_q1]['pressure_accuracy_percent'] == quarterbacks.iloc[player_q2]['pressure_accuracy_percent']:
+        print("Both players have the same accuracy percentage while under pressure")
+    else: 
+        point_q2 = point_q2 +1
+        print (q2_name,"is more accurate while under pressure than",q1_name)
+        
+    if quarterbacks.iloc[player_q1]['pressure_yards'] > quarterbacks.iloc[player_q2]['pressure_yards']:
+        point_q1 = point_q1 +1
+        print(q1_name, 'has thrown for more yards while under pressure than', q2_name)
+    elif  quarterbacks.iloc[player_q1]['pressure_yards'] == quarterbacks.iloc[player_q2]['pressure_yards']:
+        print("Both players have the same amount of yards while under pressure")
+    else: 
+        point_q2 = point_q2 +1 
+        print (q2_name, "has thrown for more yards under pressure than",q1_name)
+    if quarterbacks.iloc[player_q1]['pressure_completions'] > quarterbacks.iloc[player_q2]['pressure_completions']:
+        point_q1 = point_q1 +1
+        print(q1_name, "has completed more passes while under pressure than", q2_name)
+    elif quarterbacks.iloc[player_q1]['pressure_completions'] == quarterbacks.iloc[player_q2]['pressure_completions']:
+        print("Both players have the same amount of completions while under pressure")
+    else: 
+        point_q2 = point_q2 +1
+        print (q2_name, "has completed more passes while under pressure than", q1_name)
+    if quarterbacks.iloc[player_q1]['pressure_touchdowns'] > quarterbacks.iloc[player_q2]['pressure_touchdowns']:
+        point_q1 = point_q1 +1
+        print(q1_name, "has more touchdowns while under pressure than", q2_name)
+    elif quarterbacks.iloc[player_q1]['pressure_touchdowns'] == quarterbacks.iloc[player_q2]['pressure_touchdowns']:
+        print("Both players have the same amount of touchdowns while under pressure")
+    else: 
+        point_q2 = point_q2 +1
+        print (q2_name ,"has more touchdowns while under pressure than",q1_name)
+    
+
+if position_choice == 'R': 
+    point_w1 = 0 
+    point_w2 = 0 
+    if receivers.iloc[player_r1]['DRP%'] > receivers.iloc[player_r2]['DRP%']:
+        point_w2 = point_w2 +1 
+        print (w2_name, "has a lower dropped balls percentage than", w1_name)
+
+    elif receivers.iloc[player_r1]['DRP%'] == receivers.iloc[player_r2]['DRP%']:
+        print ("Both players have the same dropped ball percentage")
+    else: 
+        point_w1 =point_w1 +1
+        print (w1_name ,"has a lower dropped balls percentage than", w2_name)
+        
+    if receivers.iloc[player_r1]['Y/PR'] > receivers.iloc[player_r2]['Y/PR']:
+        point_w1 = point_w1 +1 
+        print (w1_name, "has more yards per reception than", w2_name)
+    
+    elif receivers.iloc[player_r1]['Y/PR'] == receivers.iloc[player_r2]['Y/PR']:
+        print ("Both player have the same amount of yards per reception")
+    else: 
+        point_w2 =point_w2 +1
+        print (w1_name, "has more yards per reception than", w2_name)
+        
+    if receivers.iloc[player_r1]['TD'] > receivers.iloc[player_r2]['TD']:
+        point_w1 = point_w1 +1 
+        print (w1_name, "has more touchdowns than", w2_name)
+    elif receivers.iloc[player_r1]['TD'] == receivers.iloc[player_r2]['TD']:
+        print ("Both players have the same amount of touchdowns")
+    else: 
+        point_w2 =point_w2 +1
+        print (w2_name, "has more touchdowns than", w1_name)
+    if receivers.iloc[player_r1]['Yards '] > receivers.iloc[player_r2]['Yards ']:
+        point_w1 = point_w1 +1 
+        print (w1_name, "has more overall yards than" ,w2_name)
+    elif receivers.iloc[player_r1]['Yards '] == receivers.iloc[player_r2]['Yards ']:
+        print ("Both players have the smae amount of overall yards")
+    else: 
+        point_r2 =point_r2 +1
+        print (w2_name,  "has more overall yards than", w1_name)
+        
+
+        
+
+
+left = [1, 2] 
+  
+    # heights of bars 
+height = [point_q1, point_q2] 
+  
+    # labels for bars 
+tick_label = [q1_name, q2_name] 
+      
+    # plotting a bar chart 
+plt.bar(left, height, tick_label = tick_label, 
+        width = .4, color = ['blue' ,'green'])
+  
+    # naming the x-axis 
+plt.xlabel('Player Name') 
+    # naming the y-axis 
+plt.ylabel('Amount Of Points') 
+    # plot title 
+plt.title('') 
+  
+    # function to show the plot 
+plt.show() 
+
+
