@@ -7,7 +7,7 @@ quarterbacks = pd.read_csv('quarterback_stats.csv')
 receivers = pd.read_csv('receiver_stats.csv')
 qb_names = pd.DataFrame(quarterbacks, columns= ['player'])
 wr_names = pd.DataFrame(receivers, columns= ['player']) 
-valid_numbers = range(0,16)
+valid_numbers = range(-1,17)
 valid_position = False
 valid_qb1 = False
 valid_qb2 = False
@@ -115,7 +115,7 @@ if position_choice == 'Q':
                 point_q2 = point_q2 +1
                 print (q2_name ,"has more touchdowns while under pressure than",q1_name)
 
-            if position_choice=='Q': 
+        if position_choice=='Q': 
                 left = [1, 2] 
 
             # heights of bars 
@@ -136,7 +136,7 @@ if position_choice == 'Q':
                 plt.title('') 
 
         # function to show the plot 
-            plt.show() 
+        plt.show() 
 elif position_choice == 'R':
     print (wr_names)
     while position_choice == 'R' and valid_rec1 is False:
@@ -234,7 +234,7 @@ elif position_choice == 'R':
 
         # function to show the plot 
         plt.show() 
-else:
-    print ("Please re-run the program and enter a Q or R")
+    else:
+        print ("Please re-run the program and enter a Q or R")
 
 
