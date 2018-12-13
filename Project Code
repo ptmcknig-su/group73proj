@@ -1,6 +1,7 @@
 import pandas as pd 
 import numpy as np 
 import warnings 
+import matplotlib.pyplot as plt 
 warnings.filterwarnings('ignore')
 quarterbacks = pd.read_csv('quarterback_stats.csv')
 receivers = pd.read_csv('receiver_stats.csv')
@@ -12,13 +13,15 @@ valid_qb1 = False
 valid_qb2 = False
 valid_rec1 = False
 valid_rec2 = False
+
+##Wade one issue is we have been unable to get the input to loop the way we want, which is to iterate/repeat until the user inputs Q or R
+##Next issue is between line 39-100
 while valid_position is False:
     try:
         position_choice = str(input("Choose which position you would like to analyze, by typing Q for Quarterbacks or R for receivers: "))
         while position_choice == 'Q' or 'R':
             valid_position = True
             break
-
     except:
         position_choice = str(input("CHOOSE which position you would like to analyze, by typing Q for Quarterbacks or R for receivers: "))
         if position_choice == 'Q' or 'R':
@@ -26,18 +29,13 @@ while valid_position is False:
             break
         position_choice = str(input("PLEASE try again, Q for Quarterbacks or R for receivers: "))
         continue
-
-
-if position_choice == 'Q':
-    print (qb_names)
-elif position_choice == 'R':
-    print (wr_names)
         
 if position_choice == 'Q':
     print (qb_names)
 elif position_choice == 'R':
     print (wr_names)
 
+#here we are trying to have the user input a number between 0-16, which refers to one of 17 players per position. for quarterbacks (Q) it works but for receivers (R) even though the code is identitical it is only in our except loops that the input is stored
 while position_choice == 'Q' and valid_qb1 is False:
     try:
         player_q1 = int(input("Choose the first quarterback you would like to analyze from this list above by inputting the number left of their name: "))
@@ -52,7 +50,7 @@ while position_choice == 'Q' and valid_qb1 is False:
             q1_name = qb_names.iloc[player_q1]['player']
         print ("You chose %s." %quarterbacks.loc[player_q1]['player'])
 
-while position_choice == 'Q' and valid_qb2 is False:
+while position_choice == 'Q' and valid_qb1 is True and valid_qb2 is False:
     try:
         player_q2 = int(input("Choose the quarterback you would like compare him with by inputting the number left of their name: "))
         if player_q2 in valid_numbers:
@@ -70,21 +68,22 @@ while position_choice == 'Q' and valid_qb2 is False:
     print ("Comparing %s against %s..." %(q1_name,q2_name))
     pass
 
+
 while position_choice == 'R' and valid_rec1 is False:
     try:
-        player_r1=int(input("Chose one reciever you would like to analyze from this list above by putting the number left of their name: "))
+        player_r1 = int(input("Chose one reciever you would like to analyze from this list above by putting the number left of their name: "))
         if player_r1 in valid_numbers:
-            valid_rec1= True 
-            w1_name=wr_names.iloc[Player_r1]['player']
+            valid_rec1 = True 
+            w1_name = wr_names.iloc[Player_r1]['player']
         print ("You chose%s." %receivers.loc[player_r1]['player'])
     except:
-        player_r1=int(input("Please try again, the proper values are between 0 an 16: "))
+        player_r1 = int(input("Please try again, the proper values are between 0 an 16: "))
         if player_r1 in valid_numbers: 
             valid_rec1 = True 
             w1_name = wr_names.iloc[player_r1]['player']
         print ("You chose %s." %receivers.loc[player_r1]['player'])
         
-while position_choice == 'R' and valid_rec2 is False: 
+while position_choice == 'R' and valid_rec1 is True and valid_rec2 is False: 
     try:
         player_r2=int(input("Chose one reciever you would like to analyze from this list above by putting the number left of their name: "))
         if player_r2 in valid_numbers:
@@ -195,33 +194,54 @@ if position_choice == 'R':
     elif receivers.iloc[player_r1]['Yards '] == receivers.iloc[player_r2]['Yards ']:
         print ("Both players have the smae amount of overall yards")
     else: 
-        point_r2 =point_r2 +1
+        point_w2 =point_w2 +1
         print (w2_name,  "has more overall yards than", w1_name)
         
-
         
-
-
-left = [1, 2] 
+if position_choice=='Q': 
+    left = [1, 2] 
   
     # heights of bars 
-height = [point_q1, point_q2] 
+    height = [point_q1, point_q2] 
   
     # labels for bars 
-tick_label = [q1_name, q2_name] 
-      
+    tick_label = [q1_name, q2_name] 
+  
     # plotting a bar chart 
-plt.bar(left, height, tick_label = tick_label, 
+    plt.bar(left, height, tick_label = tick_label, 
         width = .4, color = ['blue' ,'green'])
   
     # naming the x-axis 
-plt.xlabel('Player Name') 
+    plt.xlabel('Player Name') 
     # naming the y-axis 
-plt.ylabel('Amount Of Points') 
+    plt.ylabel('Amount Of Points') 
     # plot title 
-plt.title('') 
+    plt.title('') 
   
     # function to show the plot 
-plt.show() 
+    plt.show() 
 
-
+elif position_choice=='R':
+    left = [1, 2] 
+  
+    # heights of bars 
+    height = [point_w1, point_w2] 
+  
+    # labels for bars 
+    tick_label = [w1_name, w2_name] 
+  
+    # plotting a bar chart 
+    plt.bar(left, height, tick_label = tick_label, 
+        width = .4, color = ['blue' ,'green'])
+  
+    # naming the x-axis 
+    plt.xlabel('Player Name') 
+    # naming the y-axis 
+    plt.ylabel('Amount Of Points') 
+    # plot title 
+    plt.title('') 
+  
+    # function to show the plot 
+    plt.show() 
+else:
+    print ("Please re-run the program and enter a Q or R")
