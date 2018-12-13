@@ -6,48 +6,66 @@ quarterbacks = pd.read_csv('quarterback_stats.csv')
 receivers = pd.read_csv('receiver_stats.csv')
 qb_names = pd.DataFrame(quarterbacks, columns= ['player'])
 wr_names = pd.DataFrame(receivers, columns= ['player']) 
+valid_numbers = range(0,16)
+valid_position = False
+valid_qb1 = False
+valid_qb2 = False
+valid_rec1 = False
+valid_rec2 = False
 
+while valid_position is False:
+    position_choice = str(input("Choose which position you would like to analyze, by typing Q for Quarterbacks or R for receivers: "))
+    if position_choice != 'Q' or 'R':
+        position_choice = str(input("You didn't type an input I recognize, please type either Q for Quarterbacks or R for receivers: "))
+        continue
+    else:
+        valid_position = True
+        continue        
 
-position_choice = str(input("Choose which position you would like to analyze: "))
-while position_choice == 'Q' or 'R': #Q and R will be Quarterback or Running Back, they're just letters as we test
-    if position_choice == 'Q':
-        print (qb_names)
-        player_q1 = int(input("Choose One Quaterbacks you would like to analyze from this list above by putting the number left of their name: "))
+while position_choice == 'Q' and valid_qb1 is False:
+    print (qb_names)
+    player_q1 = input("Choose One Quaterbacks you would like to analyze from this list above by putting the number left of their name: ")
+    while int(player_q1) is TypeError:
+        player_q1 = input("You need to input an integer between 0 and 16. Please try again.")
+    if player_q1 not in valid_numbers:
+        player_q1 = int(input("Please type only the numbers left of the player names to select them: "))
+        break
+    else:
+        valid_qb1 = True
+        q1_name = qb_names.iloc[player_q1]['player']
         print ("%s" %quarterbacks.loc[player_q1]['player']) 
         print ('vs.')
+        continue
+    
+    if player_q2 in valid_numbers:
         player_q2 = int(input("Choose another Quaterback you want to compare your first choice to(please dont pick the same player): "))
+        q2_name = qb_names.iloc[player_q2]['player']
         print("%s" % quarterbacks.loc[player_q2]['player'])
-        break  
-    elif position_choice == 'R':
-        print (wr_names)
-        player_r1=int(input("Chose one reciever you would like to analyze from this list above by putting the number left of their name: "))
-        print("%s" % receivers.loc[player_r1]['player'])
-        print ('VS.')
-        player_r2=int(input("Choose another receiver you want to compare your first choice to(please dont pick the same player): "))
-        print("%s" % receivers.loc[player_r2]['player'])
-        break 
-    else:
-        print('that is not a position we are working with')
-        break 
-    continue
+        break
+    
+while position_choice == 'R' and valid_rec is False:
+    print (wr_names)
+    player_r1=int(input("Chose one reciever you would like to analyze from this list above by putting the number left of their name: "))
+    print("%s" % receivers.loc[player_r1]['player'])
+    print ('VS.')
+    player_r2=int(input("Choose another receiver you want to compare your first choice to(please dont pick the same player): "))
+    print("%s" % receivers.loc[player_r2]['player'])
+    break 
 
 if position_choice == 'Q':
     point_q1 = 0
     point_q2 = 0
     if quarterbacks.iloc[player_q1]['pressure_interceptions'] > quarterbacks.iloc[player_q2]['pressure_interceptions']:
         point_q2 = point_q2 +1 
-        print("player_q2 has less interceptions under pressure than player_q1")
-        print("player_q2 has:", point_q2, "points")
-    if quarterbacks.iloc[player_q1]['pressure_interceptions'] == quarterbacks.iloc[player_q2]['pressure_interceptions']:
-        print("Both players have the same amount of interceptions while under pressure")
+        print(q2_name, "has less interceptions under pressure than", q1_name)
+    elif quarterbacks.iloc[player_q1]['pressure_interceptions'] == quarterbacks.iloc[player_q2]['pressure_interceptions']:
+        print("Both players have the same amount of interceptions while under pressure.")
     else:   
         point_q1 = point_q1 +1 
-        print("player_q1 has less interceptions under pressure than player_q2")
-        print('Player_q1 has:',point_q1, "points")
+        print(q1_name,"has less interceptions under pressure than",q2_name)
     if quarterbacks.iloc[player_q1]['pressure_qb_rating'] > quarterbacks.iloc[player_q2]['pressure_qb_rating']:
         point_q1 = point_q1 +1
         print("player_q1 has a better passer rating while under pressure than player_q2")
-        print("Player_q1 has:", point_q1, "points")
     if quarterbacks.iloc[player_q1]['pressure_qb_rating'] == quarterbacks.iloc[player_q2]['pressure_qb_rating']:
         print("Both players have the same passer rating while under pressure")
     else: 
@@ -138,8 +156,3 @@ if position_choice == 'R':
         point_r2 =point_r2 +1
         print ('Player_r2 has more overall yards than player_r1')
         print ('Player_r2 has:', point_r2, "points")
-        
-    
-    
-    
-        
